@@ -1,4 +1,4 @@
-# mojito
+![mojito](image.png)
 
 Light-weight customisable structured logger for your Go applications.
 
