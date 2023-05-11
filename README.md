@@ -28,6 +28,9 @@ logger.Config.SetDelimiter('|')         // \n -> |
 ```
 
 # 👨‍💻 Contributing
+
+Please open a pull request with listed changes. Any issues please feel free to contact me.
+
 ---
 
 Released under the [GNU GENERAL PUBLIC LICENSE](LICENSE).
