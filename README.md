@@ -1,4 +1,4 @@
-# 🍹 Mojito
+# mojito
 
 Light-weight customisable structured logger for your Go applications.
 
