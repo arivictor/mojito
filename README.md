@@ -1,5 +1,7 @@
 ![mojito](image.png)
 
+[![Build](https://github.com/arivictor/mojito/actions/workflows/go.yml/badge.svg)](https://github.com/arivictor/mojito/actions/workflows/go.yml)
+
 Light-weight customisable structured logger for your Go applications.
 
 ## 🚀 Installation
