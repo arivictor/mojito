@@ -29,10 +29,10 @@ logger.Config.SetMessageKey("status")   // message -> status
 logger.Config.SetDelimiter('|')         // \n -> |
 ```
 
-# 👨‍💻 Contributing
+# ✨ Contributing
 
-Please open a pull request with listed changes. Any issues please feel free to contact me.
+Contributions to this project are welcome. If you encounter any issues or have suggestions for improvements, please open an issue on the GitHub repository.
 
+Before submitting a pull request, please ensure that your changes adhere to the coding conventions and pass the existing tests.
 ---
-
-Released under the [GNU GENERAL PUBLIC LICENSE](LICENSE).
+This project is licensed under the [GNU v3 License](LICENSE). Feel free to use and modify the code as per the terms of the license.
