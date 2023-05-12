@@ -29,6 +29,18 @@ logger.Config.SetMessageKey("status")   // message -> status
 logger.Config.SetDelimiter('|')         // \n -> |
 ```
 
+Mojito includes structured logging as loosely typed key-value pairs:
+
+```go
+logger := mojito.New()
+
+m.Debug("successfully did a thing"
+    "name", "mojito",
+    "time", time.Now()
+    "number", 3,
+)
+```
+
 # ✨ Contributing
 
 Contributions to this project are welcome. If you encounter any issues or have suggestions for improvements, please open an issue on the GitHub repository.
