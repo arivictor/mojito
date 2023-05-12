@@ -24,7 +24,7 @@ but comes with a lot of customizability! Here's an example:
 
 ```go
 logger := mojito.New()
-logger.Config.SetLevel(mojito.Error)
+logger.Config.SetLevel(mojito.DEBUG)
 logger.Config.SetMessageKey("status")   // message -> status
 logger.Config.SetDelimiter('|')         // \n -> |
 ```
