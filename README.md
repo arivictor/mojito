@@ -34,7 +34,7 @@ Mojito includes structured logging as loosely typed key-value pairs:
 ```go
 logger := mojito.New()
 
-m.Debug("successfully did a thing"
+logger.Debug("successfully did a thing"
     "name", "mojito",
     "time", time.Now()
     "number", 3,
