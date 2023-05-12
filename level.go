@@ -3,11 +3,11 @@ package mojito
 type Level int8
 
 const (
-	Debug Level = iota
-	Info
-	Warn
-	Error
-	Fatal
+	DEBUG Level = iota
+	INFO
+	WARN
+	ERROR
+	FATAL
 )
 
 const (
@@ -20,15 +20,15 @@ const (
 
 func (l Level) String() string {
 	switch l {
-	case Debug:
+	case DEBUG:
 		return DebugString
-	case Info:
+	case INFO:
 		return InfoString
-	case Warn:
+	case WARN:
 		return WarnString
-	case Error:
+	case ERROR:
 		return ErrorString
-	case Fatal:
+	case FATAL:
 		return FatalString
 	default:
 		return ""

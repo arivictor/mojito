@@ -17,43 +17,44 @@ type Logger struct {
 }
 
 func New() *Logger {
+	c := config{
+		severityKey:  DEFAULT_SEVERITY_KEY,
+		minLevel:     DEFAULT_MIN_LEVEL,
+		messageKey:   DEFAULT_MESSAGE_KEY,
+		timestampKey: DEFAULT_TIME_KEY,
+		delimiter:    DEFAULT_DELIMITER,
+		timeFormat:   DEFAULT_TIME_FORMAT,
+	}
+
 	return &Logger{
-		out: os.Stdout,
-		Config: config{
-			severityKey:  defaultSeverityKey,
-			minLevel:     defaultLevel,
-			messageKey:   defaultMessageKey,
-			timestampKey: defaultTimeKey,
-			delimiter:    defaultDelimiter,
-			timeFormat:   time.RFC3339,
-		},
+		out:    os.Stdout,
+		Config: c,
 	}
 }
 
 func (l *Logger) Debug(message string, properties ...interface{}) {
-	l.print(Info, message, properties)
+	l.print(DEBUG, message, properties)
 }
 
 func (l *Logger) Info(message string, properties ...interface{}) {
-	l.print(Info, message, properties)
+	l.print(INFO, message, properties)
 }
 
 func (l *Logger) Warn(message string, properties ...interface{}) {
-	l.print(Info, message, properties)
+	l.print(WARN, message, properties)
 }
 
 func (l *Logger) Error(message string, properties ...interface{}) {
-	l.print(Info, message, properties)
+	l.print(ERROR, message, properties)
 }
 
 func (l *Logger) Fatal(message string, properties ...interface{}) {
-	l.print(Info, message, properties)
+	l.print(FATAL, message, properties)
 	os.Exit(1)
 }
 
 func (l *Logger) print(level Level, message string, properties []interface{}) (int, error) {
 
-	// Exit if not above desired log level
 	if level < l.Config.minLevel {
 		return 0, nil
 	}
@@ -61,10 +62,9 @@ func (l *Logger) print(level Level, message string, properties []interface{}) (i
 	r := l.makeRecord(level, message, properties)
 
 	var line []byte
-
 	line, err := json.Marshal(r)
 	if err != nil {
-		line = []byte(fmt.Sprintf("%s: unable to marshal log message: %s", Error.String(), err.Error()))
+		line = []byte(fmt.Sprintf("%s: unable to marshal log message: %s", ERROR.String(), err.Error()))
 	}
 
 	l.mu.Lock()
@@ -74,7 +74,7 @@ func (l *Logger) print(level Level, message string, properties []interface{}) (i
 }
 
 func (l *Logger) Write(message []byte) (n int, err error) {
-	return l.print(Error, string(message), nil)
+	return l.print(ERROR, string(message), nil)
 }
 
 func (l *Logger) makeRecord(level Level, message string, properties []interface{}) map[string]interface{} {
@@ -83,8 +83,8 @@ func (l *Logger) makeRecord(level Level, message string, properties []interface{
 	r[l.Config.timestampKey] = time.Now().Format(l.Config.timeFormat)
 	r[l.Config.messageKey] = message
 
-	if level >= Error {
-		r[defaultTraceKey] = string(debug.Stack())
+	if level >= ERROR {
+		r[DEFAULT_TRACE_KEY] = string(debug.Stack())
 	}
 
 	for i, prop := range properties {
